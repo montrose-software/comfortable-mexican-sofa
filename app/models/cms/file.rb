@@ -35,6 +35,9 @@ class Cms::File < Cms::Base
   validates :site_id,
     :presence   => true
   validates_attachment_presence :file
+  # required for Paperclip 4.0 and later
+  do_not_validate_attachment_file_type :file
+
   validates :file_file_name,
     :uniqueness => {:scope => :site_id}
   
