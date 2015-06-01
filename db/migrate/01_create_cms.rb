@@ -40,6 +40,7 @@ class CreateCms < ActiveRecord::Migration
       t.string  :label,           :null => false
       t.string  :slug
       t.string  :full_path,       :null => false
+      t.string  :redirect_to_path, :null => false
       t.text    :content_cache,   :limit => 16777215
       t.integer :position,        :null => false, :default => 0
       t.integer :children_count,  :null => false, :default => 0
