@@ -73,7 +73,9 @@ class Comfy::Cms::Page < ActiveRecord::Base
     if relative
       [public_cms_path, self.site.path, self.full_path].join('/').squeeze('/')
     else
-      '//' + [self.site.hostname, public_cms_path, self.site.path, self.full_path].join('/').squeeze('/')
+      page_path = self.redirect_to_path.blank? ? self.full_path : Rails.application.routes.url_helpers.public_send(self.redirect_to_path)
+
+      '//' + [self.site.hostname, public_cms_path, self.site.path, page_path].join('/').squeeze('/')
     end
   end
 
